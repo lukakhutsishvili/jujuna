@@ -70,7 +70,7 @@ export default {
       },
       screens: {
         xl: "1440px",
-        small: "600px",
+        small: "500px",
       },
       backgroundPosition: {
         customRight: " right 4px top -10px",

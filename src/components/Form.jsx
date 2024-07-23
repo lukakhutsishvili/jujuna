@@ -7,6 +7,7 @@ function Form() {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm();
 
   const form = useRef();
@@ -18,7 +19,8 @@ function Form() {
       })
       .then(
         () => {
-          console.log("SUCCESS!");
+          alert("Message successfully sent!");
+          reset(); 
         },
         (error) => {
           console.log("FAILED...", error.text);

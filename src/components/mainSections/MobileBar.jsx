@@ -5,7 +5,7 @@ function MobileBar() {
   return (
     <div
       id="მობილური ბარი"
-      className=" bg-[url('/images/banner2.png')]  xl:pt-[90px] xl:pl-[50%] xl:pr-[100px]   xl:h-[635px] xl:mt-10 w-full h-[259px] p-3 pl-[100px] bg-no-repeat flex flex-col bg-cover font-tommaso"
+      className=" bg-[url('/images/banner2.png')]  xl:pt-[90px] xl:pl-[50%] xl:pr-[100px]   xl:h-[635px] xl:mt-10 w-full  p-3 pl-[100px] bg-no-repeat flex flex-col bg-cover font-tommaso"
     >
       <h1 className="xl:text-[64px] font-tommaso text-[32px] text-black">
         მობილური ბარი
