@@ -33,7 +33,7 @@ const List = ({ isOpen, onClose }) => {
   ];
 
   return (
-    <ul className="list-none pt-5 md:p-0 md:flex md:gap-10">
+    <ul className="list-none pt-5 md:p-0 xl:flex md:gap-10">
       {menuItems.map((item, index) => (
         <motion.li
           key={index}
@@ -42,7 +42,7 @@ const List = ({ isOpen, onClose }) => {
           whileHover={{ scale: 1.1 }}
           initial={isOpen ? "open" : "closed"}
           animate={isOpen ? "open" : "closed"}
-          onClick={onClose} // Close the modal when an item is clicked
+          onClick={onClose} 
         >
           <a
             href={`#${item.toLowerCase()}`}
