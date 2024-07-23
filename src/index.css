@@ -1,0 +1,43 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+* {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+  line-height: normal;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+    .shape {
+      position: relative;
+      width: 200px;
+      height: 200px;
+      background: black;
+      transform: rotate(45deg);
+    }
+
+    .shape::before,
+    .shape::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 100px;
+      background: black;
+    }
+
+    .shape::before {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+    }
+
+    .shape::after {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) rotate(45deg);
+    }
