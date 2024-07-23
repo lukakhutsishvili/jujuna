@@ -6,7 +6,7 @@ function Bottle() {
       <h1 className="dark:text-white xl:text-[64px] font-tommaso text-[48px] ml-5 ">
         ბოთლი
       </h1>
-      <div className="xl:justify-between xl:pr-[60px] xl:bg-[url('public/images/Vector5.png')] xl:h-[482px] xl:bg-right bg-no-repeat bg-[url('/images/littleBlackDiv.png')] bg-customRight h-[382px] xl:p-0 border-t-2 border-b-2 border-[#613994] pt-[14px] pb-[14px] pr-[20px] pl-[9px] flex gap-5">
+      <div className="xl:justify-between xl:pr-[60px] xl:bg-[url('/images/Vector5.png')] xl:h-[482px] xl:bg-right bg-no-repeat bg-[url('/images/littleBlackDiv.png')] bg-customRight h-[382px] xl:p-0 border-t-2 border-b-2 border-[#613994] pt-[14px] pb-[14px] pr-[20px] pl-[9px] flex gap-5">
         <div className="xl:w-[386px]  xl:flex-shrink-0">
           <img
             className="xl:h-full xl:w-[386px] w-[205px]  h-[255px] "
