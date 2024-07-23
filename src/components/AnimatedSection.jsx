@@ -18,7 +18,7 @@ const AnimatedSection = ({ children }) => {
       initial="hidden"
       animate={controls}
       variants={{
-        hidden: { opacity: 0, y: 20 },
+        hidden: { opacity: 0.4, y: 20 },
         visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 0.7, delay: 0.05 }}
