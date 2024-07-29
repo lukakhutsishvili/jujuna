@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import emailjs from "@emailjs/browser";
+import Button from "../components/Button";
 
 function Form() {
   const {
@@ -9,8 +10,11 @@ function Form() {
     formState: { errors },
     reset,
   } = useForm();
-
   const form = useRef();
+  const [successMessage, setSuccessMessage] = useState(
+    "message succesfully send"
+  );
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const sendEmail = () => {
     emailjs
@@ -19,8 +23,12 @@ function Form() {
       })
       .then(
         () => {
-          alert("Message successfully sent!");
-          reset(); 
+          setSuccessMessage("Message successfully sent!");
+          setShowSuccess(true);
+          setTimeout(() => {
+            setShowSuccess(false);
+          }, 2000);
+          reset();
         },
         (error) => {
           console.log("FAILED...", error.text);
@@ -32,68 +40,98 @@ function Form() {
     <form
       ref={form}
       onSubmit={handleSubmit(sendEmail)}
-      className="xl:scale-x-[1]  scale-x-[-1] order-4"
+      className="xl:scale-x-[1] scale-x-[-1] order-4 relative"
     >
-      <label
-        htmlFor="phone"
-        className=" xl:text-[20px] font-arialgeo text-[12px] block text-white "
-      >
-        ტელეფონი
-      </label>
+      <div className="relative">
+        <label
+          htmlFor="phone"
+          className="xl:text-[20px] md:text-[16px] font-arialgeo text-[12px] block text-white"
+        >
+          ტელეფონი
+        </label>
+        {errors.phone && (
+          <span className="absolute right-0 bottom-0 text-red-500 text-xs transition-opacity duration-500 ease-in-out opacity-100">
+            {errors.phone.message}
+          </span>
+        )}
+      </div>
       <input
         id="phone"
         name="phone"
-        {...register("phone", { required: "ტელეფონი is required" })}
+        type="text"
+        {...register("phone", {
+          required: "Phone number is required",
+          pattern: {
+            value: /^[0-9()+-\s]+$/,
+            message: "invalid Phone number ",
+          },
+        })}
         placeholder="მიუთითეთ ნომერი..."
-        className={`xl:text-[14px] xl:w-[328px] h-10 w-[209px] mt-1 p-2 box-border text-[10px] outline-none bg-black text-white rounded-lg block ${
-          errors.phone ? "border-2 border-red-500" : "border-none"
-        }`}
+        className={`xl:text-[14px] xl:w-[328px] small:w-[150px] md:w-[260px] md:text-[12px] h-10 w-[209px] mt-1 p-2 box-border text-[10px] outline-none bg-black text-white rounded-lg block`}
       />
 
-      <label
-        htmlFor="mail"
-        className="xl:text-[20px] font-arialgeo text-[12px] block text-white mt-3"
-      >
-        ელ.ფოსტა
-      </label>
+      <div className="relative">
+        <label
+          htmlFor="mail"
+          className="xl:text-[20px] md:text-[16px] font-arialgeo text-[12px] block text-white mt-3"
+        >
+          ელ.ფოსტა
+        </label>
+        {errors.mail && (
+          <span className="absolute right-0 bottom-0 text-red-500 text-xs transition-opacity duration-500 ease-in-out opacity-100">
+            {errors.mail.message}
+          </span>
+        )}
+      </div>
       <input
         name="mail"
         id="mail"
         {...register("mail", {
-          required: "ელ.ფოსტა is required",
+          required: "mail is required",
           pattern: {
-            value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-            message: "ელ.ფოსტა is invalid",
+            value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+            message: "mail is invalid",
           },
         })}
         placeholder="მიუთითეთ ელ-ფოსტა..."
-        className={`xl:text-[14px] xl:w-[328px] h-10 mt-1 w-[209px] p-2 text-[10px] box-border outline-none bg-black text-white rounded-lg block ${
-          errors.mail ? "border-2 border-red-600" : "border-none"
-        }`}
+        className={`xl:text-[14px] xl:w-[328px] small:w-[150px]  small md:w-[260px]  md:text-[12px] h-10 mt-1 w-[209px] p-2 text-[10px] box-border outline-none bg-black text-white rounded-lg block`}
       />
 
-      <label
-        htmlFor="text"
-        className=" xl:text-[20px] font-arialgeo text-[12px] block text-white mt-3"
-      >
-        მესიჯი
-      </label>
-      <textarea
-        id="text"
-        name="message"
-        {...register("text", { required: "მესიჯი is required" })}
-        placeholder="დაწერეთ მესიჯი..."
-        className={` xl:text-[14px] xl:w-[328px] h-15 mt-1 w-[209px] h-[112px] p-2 box-border text-[10px] outline-none bg-black text-white rounded-lg block ${
-          errors.text ? "border-2 border-red-600" : "border-none"
-        }`}
-      />
+      <div className="relative pb-[8px]">
+        <div className="relative">
+          <label
+            htmlFor="text"
+            className="xl:text-[20px] md:text-[16px]  font-arialgeo  text-[12px] block text-white mt-3"
+          >
+            მესიჯი
+          </label>
+          {errors.text && (
+            <span className="absolute bottom-0 right-0 text-red-500 text-xs transition-opacity duration-500 ease-in-out opacity-100">
+              {errors.text.message}
+            </span>
+          )}
+        </div>
+        <textarea
+          id="text"
+          name="message"
+          {...register("text", { required: "message is required", length: 5 })}
+          placeholder="დაწერეთ მესიჯი..."
+          className={`xl:text-[14px] xl:w-[328px]  small:w-[150px]  md:w-[260px]  md:text-[12px] h-15 mt-1 w-[209px] h-[112px] p-2 box-border text-[10px] outline-none bg-black text-white rounded-lg block `}
+        />
 
-      <button
-        type="submit"
-        className="xl:rounded-3xl xl:mt-[27px] xl:h-[49px] mt-3 ml-auto bg-[#613994] text-white rounded-2xl w-[130px] h-[32px] flex justify-center items-center"
-      >
-        გაგზავნა
-      </button>
+        {successMessage && (
+          <div
+            className={`absolute text-green-500 text-sm mt-1 left-1 transition-opacity duration-500 ease-in-out ${
+              showSuccess ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {successMessage}
+          </div>
+        )}
+      </div>
+      <div className="mt-6 flex justify-end">
+        <Button type="primary">გაგზავნა</Button>
+      </div>
     </form>
   );
 }
