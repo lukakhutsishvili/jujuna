@@ -5,7 +5,7 @@ function FeedBack() {
   return (
     <div
       id="ჩვენ შესახებ"
-      className="xl:h-[594px] xl:pt-[90px] xl:pr-[224px] xl:pb-[70px] xl:pl-[80px] xl:scale-x-[1] bg-[url('/images/banner1.png')] bg-no-repeat bg-cover px-5 py-6 h-[352px] w-full transform scale-x-[-1] bg-right font-arialgeo"
+      className="xl:h-[594px] xl:pt-[90px] xl:pr-[224px] xl:pb-[70px] xl:pl-[80px] xl:scale-x-[1] bg-[url('/images/banner1.png')] bg-no-repeat bg-cover px-5 py-6  w-full transform scale-x-[-1] bg-right font-arialgeo"
     >
       <div className=" flex gap-[20px] xl:gap-[123px]">
         <Form />
